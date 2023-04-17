@@ -101,14 +101,6 @@ objects:
                 exec:
                   command: ["/bin/ash", "-c", "sleep 20"]
 # Kibana manifests
-# Using service account as an Oauth client. read https://access.redhat.com/documentation/en-us/openshift_container_platform/4.2/html/authentication/using-service-accounts-as-oauth-client
-- apiVersion: v1
-  kind: ServiceAccount
-  metadata:
-    annotations:
-      # Ensuring the redirect url will be the kibana route
-      serviceaccounts.openshift.io/oauth-redirectreference.primary: '{"kind":"OAuthRedirectReference","apiVersion":"v1","reference":{"kind":"Route","name":"kibana-proxy"}}'
-    name: kibana-proxy
 - apiVersion: v1
   kind: Service
   metadata:
