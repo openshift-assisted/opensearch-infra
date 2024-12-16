@@ -68,8 +68,8 @@ objects:
                       "--es.indices_settings",
                       "--es.indices_mappings",
                       "--es.shards",
-                      "--es.snapshots",
                       "--es.timeout=30s",
+                      "--collector.snapshots",
                       "--web.listen-address=:9108",
                       "--web.telemetry-path=/metrics"]
             resources:
@@ -206,7 +206,7 @@ parameters:
 - name: ES_URI_SECRET_KEY
   value: endpoint
 - name: IMAGE_NAME
-  value: "quay.io/prometheuscommunity/elasticsearch-exporter:v1.3.0"
+  value: "quay.io/prometheuscommunity/elasticsearch-exporter:v1.8.0"
 - name: IMAGE_PULL_POLICY
   value: "IfNotPresent"
 - name: OAUTH_IMAGE
