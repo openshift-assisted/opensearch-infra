@@ -12,6 +12,7 @@ objects:
   spec:
     endpoints:
     - interval: 30s
+      scrapeTimeout: ${SCRAPE_TIMEOUT}
       path: /metrics
       port: "http"
       scheme: http
@@ -29,3 +30,5 @@ objects:
 parameters:
 - name: NAMESPACE
   required: true
+- name: SCRAPE_TIMEOUT
+  value: "20s"
