@@ -27,6 +27,30 @@ objects:
     selector:
       matchLabels:
         app: prometheus-opensearch-exporter
+- apiVersion: monitoring.rhobs/v1
+  kind: ServiceMonitor
+  metadata:
+    labels:
+      prometheus: app-sre
+    name: servicemonitor-assisted-opensearch-${NAMESPACE}
+  spec:
+    endpoints:
+    - interval: 30s
+      scrapeTimeout: ${SCRAPE_TIMEOUT}
+      path: /metrics
+      port: "http"
+      scheme: http
+      metricRelabelings:
+      - sourceLabels: [cluster]
+        regex:  '\d+:(.*)'
+        replacement: '$1'
+        targetLabel: cluster
+    namespaceSelector:
+      matchNames:
+      - ${NAMESPACE}
+    selector:
+      matchLabels:
+        app: prometheus-opensearch-exporter
 parameters:
 - name: NAMESPACE
   required: true
